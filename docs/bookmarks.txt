@@ -1,0 +1,3 @@
+For emacs on codespaces:
+https://www.emacswiki.org/emacs/CopyAndPaste
+https://readline.kablamo.org/emacs.html
