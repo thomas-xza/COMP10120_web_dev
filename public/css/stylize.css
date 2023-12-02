@@ -14,3 +14,10 @@
 .map-container {
     height: 400px;
 }
+
+button {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    margin: 5px;
+}
