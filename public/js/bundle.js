@@ -7946,8 +7946,12 @@
 	      setLat(map.current.getCenter().lat.toFixed(4));
 	      setZoom(map.current.getZoom().toFixed(2));
 	    });
+	    console.log(lng, lat);
 	  });
-	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+	    className: "proof-of-concept button",
+	    onClick: () => console.log(lng, lat)
+	  }, "Log longitude/latitude to console"), /*#__PURE__*/React.createElement("div", {
 	    className: "sidebar"
 	  }, "Longitude: ", lng, " | Latitude: ", lat, " | Zoom: ", zoom), /*#__PURE__*/React.createElement("div", {
 	    ref: mapContainer,

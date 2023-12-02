@@ -25,10 +25,13 @@ export default function App() {
 	    setLat(map.current.getCenter().lat.toFixed(4));
 	    setZoom(map.current.getZoom().toFixed(2));
 	});
+
+	console.log(lng, lat);
     });
     
     return (
 	    <div>
+	    <button className="proof-of-concept button" onClick={() => console.log(lng, lat)}>Log longitude/latitude to console</button>
 	    <div className="sidebar">
 	    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
 	</div>
