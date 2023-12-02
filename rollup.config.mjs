@@ -7,7 +7,7 @@ import json from '@rollup/plugin-json';
 export default {
    input: 'src/index.js',
    output: {
-      file: 'public/bundle.js',
+      file: 'public/js/bundle.js',
       format: 'iife'
    },
    plugins: [
