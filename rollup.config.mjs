@@ -12,7 +12,8 @@ export default {
    },
    plugins: [
       nodeResolve({
-         extensions: ['.js', 'jsx']
+         extensions: ['.js', 'jsx'],
+	 moduleDirectories: ['node_modules']
       }),
       babel({
          babelHelpers: 'bundled',
@@ -25,5 +26,5 @@ export default {
          'process.env.NODE_ENV': '"development"'
       }),
       json()
-   ]
+      ]
 }

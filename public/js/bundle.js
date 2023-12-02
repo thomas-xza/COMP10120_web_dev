@@ -1,4 +1,4 @@
-(function () {
+(function (mapboxgl) {
 	'use strict';
 
 	function getDefaultExportFromCjs (x) {
@@ -7924,44 +7924,37 @@
 	}
 
 	var reactDomExports = reactDom.exports;
+	var ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(reactDomExports);
 
-	var createRoot;
-
-	var m = reactDomExports;
-	{
-	  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-	  createRoot = function (c, o) {
-	    i.usingClientEntryPoint = true;
-	    try {
-	      return m.createRoot(c, o);
-	    } finally {
-	      i.usingClientEntryPoint = false;
-	    }
-	  };
-	}
-
-	// import { fallback_data } from './fallback_data.json';
-
+	mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
 	function App() {
-	  const [fallback_data_obj, set_databack_data_obj] = reactExports.useState(fallback_data);
-	  const [page_flow, set_page_flow] = reactExports.useState(0);
-	  const [form_data, set_form_data] = reactExports.useState({
-	    "coordinate_x": "",
-	    "coordinate_y": "",
-	    "issue_type": "",
-	    "description": ""
+	  const mapContainer = reactExports.useRef(null);
+	  const map = reactExports.useRef(null);
+	  const [lng, setLng] = reactExports.useState(-70.9);
+	  const [lat, setLat] = reactExports.useState(42.35);
+	  const [zoom, setZoom] = reactExports.useState(9);
+	  reactExports.useEffect(() => {
+	    if (map.current) return; // initialize map only once
+	    map.current = new mapboxgl.Map({
+	      container: mapContainer.current,
+	      style: 'mapbox://styles/mapbox/streets-v12',
+	      center: [lng, lat],
+	      zoom: zoom
+	    });
+	    map.current.on('move', () => {
+	      setLng(map.current.getCenter().lng.toFixed(4));
+	      setLat(map.current.getCenter().lat.toFixed(4));
+	      setZoom(map.current.getZoom().toFixed(2));
+	    });
 	  });
-	  switch (page_flow) {
-	    case 0:
-	      return /*#__PURE__*/React.createElement(Mapping, {
-	        fallback_data_obj: fallback_data_obj,
-	        form_data: form_data,
-	        set_form_data: set_form_data
-	      });
-	  }
+	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+	    className: "sidebar"
+	  }, "Longitude: ", lng, " | Latitude: ", lat, " | Zoom: ", zoom), /*#__PURE__*/React.createElement("div", {
+	    ref: mapContainer,
+	    className: "map-container"
+	  }));
 	}
 
-	const root = createRoot(document.getElementById('root'));
-	root.render( /*#__PURE__*/React.createElement(App, null));
+	ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(App, null)), document.getElementById('root'));
 
-})();
+})(mapboxgl);
