@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  
+  <head>
+    
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="./css/normalize.css">
+
+    <link rel="stylesheet" href="./css/stylize.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Maintenance Wizard</title>
+    
+  </head>
+  
+  <body>
+    
+    <div id="root"></div>
+    
+    <script type="module" src="./bundle.js"></script>
+
+    <footer>
+      Built by tutor group Z10 with Javascript, <a href="https://react.dev/" target="_blank">React.js</a>, <a href="https://rollupjs.org/" target="_blank">Rollup.js</a>; <a href="https://github.com/m-wizard/">view source</a>
+    </footer>
+    
+  </body>
+  
+</html>

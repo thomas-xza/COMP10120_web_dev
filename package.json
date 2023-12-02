@@ -1,20 +1,33 @@
 {
-  "devDependencies": {
-    "@babel/preset-env": "^7.23.5",
-    "@babel/preset-react": "^7.23.3",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.5",
-    "babel-jest": "^29.7.0",
-    "jest": "^29.7.0",
-    "rollup": "^3.29.4",
-    "serve": "^14.2.1"
-  },
-  "dependencies": {
-    "mapbox-gl": "^2.14.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "name": "maintenance_wizard",
+    "version": "1.0.0",
+    "license": "BSD",
+    "repository": {
+        "type": "git",
+        "url": "maintenance_wizard"
+    },
+    "scripts": {
+        "build": "rollup -c",
+        "autobuild": "rollup -c -w",
+        "test": "jest",
+        "serve": "serve ./public"
+    },
+    "devDependencies": {
+	"@babel/preset-env": "^7.23.5",
+	"@babel/preset-react": "^7.23.3",
+	"@rollup/plugin-babel": "^6.0.4",
+	"@rollup/plugin-commonjs": "^25.0.7",
+	"@rollup/plugin-json": "^6.0.1",
+	"@rollup/plugin-node-resolve": "^15.2.3",
+	"@rollup/plugin-replace": "^5.0.5",
+	"babel-jest": "^29.7.0",
+	"jest": "^29.7.0",
+	"rollup": "^3.29.4",
+	"serve": "^14.2.1"
+    },
+    "dependencies": {
+	"mapbox-gl": "^2.14.1",
+	"react": "^18.2.0",
+	"react-dom": "^18.2.0"
+    }
 }
