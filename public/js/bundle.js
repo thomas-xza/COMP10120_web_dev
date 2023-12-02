@@ -7930,12 +7930,17 @@
 	function App() {
 	  const mapContainer = reactExports.useRef(null);
 	  const map = reactExports.useRef(null);
-	  const [lng, setLng] = reactExports.useState(-70.9);
-	  const [lat, setLat] = reactExports.useState(42.35);
-	  const [zoom, setZoom] = reactExports.useState(9);
-
-	  //  https://docs.mapbox.com/api/maps/styles/
-
+	  const [lng, setLng] = reactExports.useState(-2.235);
+	  const [lat, setLat] = reactExports.useState(53.46235);
+	  const [zoom, setZoom] = reactExports.useState(13);
+	  reactExports.useState([0, 0]);
+	  function map_clicked(e) {
+	    alert("You clicked:\n" + lng + "\n" + lat);
+	  }
+	  function handleResize() {
+	    map.current.resize();
+	    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight);
+	  }
 	  reactExports.useEffect(() => {
 	    if (map.current) return; // initialize map only once
 	    map.current = new mapboxgl.Map({
@@ -7945,28 +7950,22 @@
 	      center: [lng, lat],
 	      zoom: zoom
 	    });
-
-	    // map.current.on('move', () => {
-	    //     setLng(map.current.getCenter().lng.toFixed(4));
-	    //     setLat(map.current.getCenter().lat.toFixed(4));
-	    //     setZoom(map.current.getZoom().toFixed(2));
-	    // });
 	    map.current.on('mousemove', e => {
-	      console.log(JSON.stringify(e));
-	      // setLng(map.current.getCenter().lng.toFixed(4));
-	      // setLat(map.current.getCenter().lat.toFixed(4));
-	      // setZoom(map.current.getZoom().toFixed(2));
+	      console.log(JSON.stringify(e.point));
+	      const co_ords = e.lngLat.wrap();
+	      console.log(co_ords, co_ords["lng"], co_ords["lat"]);
+	      setLng(co_ords.lng);
+	      setLat(co_ords.lat);
+	      setZoom(map.current.getZoom().toFixed(2));
 	    });
-	    console.log(lng, lat);
+	    window.addEventListener('resize', handleResize);
 	  });
-	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-	    className: "proof-of-concept button",
-	    onClick: () => console.log(lng, lat)
-	  }, "Log longitude/latitude to console"), /*#__PURE__*/React.createElement("div", {
+	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
 	    className: "sidebar"
 	  }, "Longitude: ", lng, " | Latitude: ", lat, " | Zoom: ", zoom), /*#__PURE__*/React.createElement("div", {
 	    ref: mapContainer,
-	    className: "map-container"
+	    className: "map-container",
+	    onClick: map_clicked
 	  }));
 	}
 
