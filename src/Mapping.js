@@ -1,37 +1,54 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
-// import { validate_postcode, validate_phone } from './validators.js';
+import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-export default function Form({ fallback_data_obj, form_data, set_form_data }) {
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
+
+export default function Mapping({ fallback_data_obj, form_data, set_form_data }) {
 
     const handle_clear = () => {
 
 	set_form_data(({ "coordinate_x": "",
                          "coordinate_y": "",
                          "issue_type": "",
-                         "description": "" });
-		      
-    };
-
-    const handle_checkbox_toggle = (target) => {
-
-	const issue_type_selection = target
-
-	set_form_data({ ...form_data,
-			"issue_type": issue_type_selection })
+                         "description": "" }));
 
     }
-
+	    
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-70.9);
+    const [lat, setLat] = useState(42.35);
+    const [zoom, setZoom] = useState(9);
 
     useEffect(() => {
+	if (map.current) return; // initialize map only once
+	map.current = new mapboxgl.Map({
+	    container: mapContainer.current,
+	    style: 'mapbox://styles/mapbox/streets-v12',
+	    center: [lng, lat],
+	    zoom: zoom
+	});
 
-	console.log(form_data);
-
-    },[form_data]);
+	console.log(lng, lat);
+    });
     
-    return (
+    map.current.on('move', () => {
+	setLng(map.current.getCenter().lng.toFixed(4));
+	setLat(map.current.getCenter().lat.toFixed(4));
+	setZoom(map.current.getZoom().toFixed(2));
+    });
+    
+    return (	 
+	    <>
+	    <div className="sidebar">
+	    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+	</div>
+	    <div ref={mapContainer} className="map-container" />
+	</>
+	    
+    );
 
-   );
 }
 
