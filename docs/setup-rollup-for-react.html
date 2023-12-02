@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<script>
+   function carbonAd(cutoffWidth) {
+      if (innerWidth > cutoffWidth) {
+         var script = document.createElement('script');
+         script.type = 'text/javascript';
+         script.async = true;
+         script.src = '//cdn.carbonads.com/carbon.js?serve=CWYI62JN&placement=wwwcodeguagecom';
+         script.id = '_carbonads_js';
+         document.querySelector('.carbon-ad').appendChild(script);
+      }
+   }
+</script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+try {
+   var consent = JSON.parse(
+      decodeURIComponent(document.cookie)
+      .match(/cg-consent.+?;/)[0]
+      .slice(0, -1)
+      .slice('cg-consent='.length));
+
+   gtag('consent', 'default', {
+      'functionality_storage': consent.nec ? 'granted' : 'denied',
+      'security_storage': consent.nec ? 'granted' : 'denied',
+      'ad_storage': consent.ads ? 'granted' : 'denied',
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'personalization_storage': consent.prefs ? 'granted' : 'denied',
+   });
+}
+catch (e) {
+   gtag('consent', 'default', {
+      'functionality_storage': 'denied',
+      'security_storage': 'denied',
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'personalization_storage': 'denied',
+   });
+}
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TCWJJVC');</script>
+<!-- End Google Tag Manager -->
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="/favicon.ico?v=2">
+<link rel="stylesheet" href="/static/styles/hfs.css?v=27">
+<script>if (localStorage.getItem('is-dark-theme')) {document.documentElement.classList.add('dark');}</script>
+
+<link rel="stylesheet" href="/static/highlight/prism.css?v=2">
+<script src="/static/highlight/prism-new.js" async></script>
+   
+<link rel="stylesheet" href="/static/styles/sub.css?v=27">
+<link rel="stylesheet" href="/static/styles/sub-blog.css?v=27">      <title>How to Set Up Rollup to Run React? | CodeGuage</title>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TCWJJVC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="overlay" class="btn"></div>
+
+<div class="header-cont">
+   <div id="news">Are we up to your expectations? Let us know what you make of CodeGuage in this <b><a href="https://docs.google.com/forms/d/e/1FAIpQLSeIgmKbwGF-4czdvf062EgyjDxORFMwPPfB8v88WQmi25o-8g/viewform" target="_blank" rel="noopener nofollow">quick 5-minute survey</a></b>.</div>
+<header class="header">
+   <div class="header_logo"><a href="/" aria-label="CodeGuage.com"></a></div>
+
+   <nav class="nav">
+      <div class="nav-wrapper">
+         <div class="nav_start">
+            <a class="nav_hover-link" href="/courses/">Courses</a>
+            <a class="nav_hover-link" href="/tutorials/">Tutorials</a>
+            <a class="nav_hover-link" href="/questions/"><span>New</span> Questions</a>
+            <a class="nav_hover-link" href="/blog/">Blog</a>
+            <a class="nav_hover-link" href="/about">About us</a>
+         </div>
+         <div class="nav_end">
+            <a class="nav_icon" href="https://www.instagram.com/codeguage/"><i class="cg-icon cg-icon--white cg-icon--instagram"></i></a>
+            <a class="nav_icon" href="https://twitter.com/codeguage"><i class="cg-icon cg-icon--white cg-icon--twitter"></i></a>
+            <a class="nav_icon" href="https://github.com/codeguage-code"><i class="cg-icon cg-icon--white cg-icon--github"></i></a>
+         </div>
+      </div>
+   </nav>
+   <div class="header_utils">
+      <button class="btn header_dark"><i class="cg-icon cg-icon--white cg-icon--sun"></i></button>
+      <button class="btn header_search"><div class="i-search"></div></button>
+      <button class="btn header_hamburger" data-overlay="true" data-toggle="this .nav" data-class="header_hamburger--close nav--shown"><span></span><span></span><span></span></button>
+   </div>
+</header>
+</div>
+
+<div id="search-m-bar" style="display: none">
+         <script async src="https://cse.google.com/cse.js?cx=015075231192673612328:gxkogg_zrd4"></script>
+      <div class="gcse-search"></div>
+   </div>
+<noscript>Please enable JavaScript in order to use all of the features on this page!</noscript>
+
+<!--  --><div class="atf-grid">
+      <div class="atf">
+         <div class="atf_cat">How To's</div>
+         <h1>How to Set Up Rollup to Run React?</h1>
+         <div class="atf_datetime">
+            <div class="atf_duration">14 mins</div>
+            <div class="atf_date">11 Mar 2023</div>
+         </div>
+         <div class="atf_footer">
+            <div class="atf_tags"><div class="tag">React</div><div class="tag">Rollup</div></div>
+            <div class="sharing-icons">
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react"><i class="cg-icon cg-icon--white cg-icon--facebook"></i></a></span>
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via Twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react&text=How+to+Set+Up+Rollup+to+Run+React%3F&via=codeguage"><i class="cg-icon cg-icon--white cg-icon--twitter"></i></a></span>
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via email" target="_blank" rel="noopener" href="mailto:?subject=How%20to%20Set%20Up%20Rollup%20to%20Run%20React%3F&body=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react"><i class="cg-icon cg-icon--white cg-icon--mail"></i></a></span>
+</div>
+         </div>
+      </div>
+      <div class="oflw"></div><div class="adv"><div class="carbon-ad"><script>carbonAd(520)</script></div></div>
+      <div class="oflw"></div>
+   </div>
+<div class="main">
+<div class="s-left">
+   <div class="main-content">
+      <div class="track"><a href="/">Home</a> &gt; <a href="/blog/">Blog</a></div><div class="atoc">
+   <h2>Table of Contents</h2>
+   <div class="uc"><ol class="args"><li><a href="#Introduction">Introduction</a></li><li><a href="#What_is_Rollup">What is Rollup?</a></li><li><a href="#The_React_application">The React application</a></li><li><a href="#Installing_Rollup_and_its_plugins">Installing Rollup and its plugins</a></li><li><a href="#Configuring_Rollup">Configuring Rollup</a></li><li><a href="#In_the_end">In the end</a></li></ol></div>
+</div>      <h2 id="Introduction">Introduction</h2>      <div class="uc">
+         <p>React is one of the most popular libraries out there to create interactive UIs in today's fast-paced and modern technological world. One of the core features of React that makes it intuitive enough to work with is JSX. JSX is simply a syntax extension to JavaScript, which has to be processed by some kind of a tool before the code could be sent to a browser for execution.</p>
+         <p>This preprocessing of JSX is the job of transpilers, the most common one being Babel. However, almost no one uses Babel as a standalone tool — more often than not, it's used together with a <b><em>bundler</em></b>.</p>
+         <p><em>Now what on Earth is a bundler?</em></p>
+         <p>Well, from the perspective of a web application, a bundler tool is simply a means of taking all the multiple JavaScript files involved in building the application and then bundling them together into one single JavaScript file to be served to the client.</p>
+         <p>This, as you can reason, improves the network latency of the app, and also improves the loading times of the app. In this article, we'll see how to install and set up <b>Rollup</b>, a bundler tool, to help us build React applications.</p>
+      </div>
+            <h2 id="What_is_Rollup">What is Rollup?</h2>      <div class="uc">
+         <p>You might've heard of Webpack as a bundler from discussions on the setup of React. Rollup is a lightweight alternative to Webpack.</p>
+         <div class="deft">At its core, <b>Rollup</b> is a <b>bundler software</b> that helps us bundle JavaScript modules together.</div>
+         <p>Its distinctive feature is that it's designed to work with ECMAScript modules.</p>
+         <p>The official website of Rollup, <a href="https://rollupjs.org/">rollupjs.org</a> is a really nice source of information for bundling in general and for Rollup's setup.</p>
+         <div class="fig">
+            <div style="max-width: 600px"><div class="lazy" style="padding-bottom: 56.333333333333336%;"><img class="lazy_img" data-src="/static/images/content/react/rollup.png" alt="rollupjs.org - Rollup's official site."></div></div>
+            <div class="fig_capt">rollupjs.org - Rollup's official site.</div>
+         </div>
+         <p>Rollup may be lighter in weight and complexity than Webpack, but by no means is it an elementary bundler. No. Rollup is definitely a complex module bundler software that comes equipped with numerous bells and whistles for different kinds of bundling concerns.</p>
+         <p>It's surely worth a try.</p>
+      </div>
+      <h2 id="The_React_application">The React application</h2>      <div class="uc">
+         <p>Before we dive into exploring how to get Rollup installed to bundle a React application, let's define some starting code that'll eventually get bundled in the following sections.</p>
+         <p>Go ahead and create a <b><span class="imp">project1</span></b> directory anywhere on your operating system where you find it convenient to access, usually which is just the Desktop.</p>
+         <p>Then create the following set of files in it:</p>
+         <div class="fig fig--closer">
+            <div style="max-width: 293px"><div class="lazy" style="padding-bottom: 64.16382252559727%;"><img class="lazy_img" data-src="/static/images/blog/setup-rollup/file-setup.png" alt="Project structure for a React app."></div></div>
+            <div class="fig_capt">Project structure for a React app.</div>
+         </div>
+         <p>If you've worked with React before, you'll surely know that this file setup is simply meant to neatly structure our React application. All the source files go in the <b><span class="imp">src</span></b> directory while the public-facing files go in the <b><span class="imp">public</span></b> directory.</p>
+         <p>The <span class="imp">node_modules</span> directory is created automatically by Node, while the <span class="imp">package.json</span> file (and <span class="imp">package-lock.json</span>) is necessary to describe the project and all of its package dependencies.</p>
+         <p><em>Quite basic.</em></p>
+         <p>Here's the code of the <b><span class="imp">index.js</span></b> file:</p>
+         <div class="code"><div class="code_capt">index.js</div><pre><code class="language-javascript">import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import App from './App';
+
+ReactDOM.createRoot(document.querySelector('#root')).render(
+   &lt;App/&gt;
+);</code></pre></div>
+         <p>It simply loads another file's exported <code>App</code> component and renders it inside a <code>#root</code> DOM element.</p>
+         <p>Here's the code of <b><span class="imp">App.js</span></b>:</p>
+         <div class="code"><div class="code_capt">App.js</div><pre><code class="language-javascript">import React from 'react';
+
+function App() {
+   return (
+      &lt;h1&gt;Rollup is amazing!&lt;/h1&gt;
+   );
+}
+
+export default App;</code></pre></div>
+         <p>And here's the code of <b><span class="imp">index.html</span></b>:</p>
+         <div class="code"><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+   &lt;meta charset="UTF-8"&gt;
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+   &lt;title&gt;Project 1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;div id="root"&gt;&lt;/div&gt;
+   &lt;script src="bundle.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+         <p>Take note of the <code>&lt;script&gt;</code> tag at the end of <code>&lt;body&gt;</code> here. It refers to a file called <span class="imp">bundle.js</span> in the <span class="imp">public</span> directory, which as of yet doesn't exist.</p>
+         <p>Our bundling process will end up with a <span class="imp">bundle.js</span> file in <span class="imp">public</span> which'll eventually allow us to run the React application.</p>
+         <p>Here's the content of the <span class="imp">package.json</span> file:</p>
+         <div class="code"><pre><code class="language-json">{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-react": "^7.18.6",
+  }
+}</code></pre></div>
+         <p>As is apparent by this file, we are assuming that we have the following packages already installed in our setup: <code>react</code> and <code>react-dom</code> for React, and <code>@babel/core</code> and <code>@babel/preset-react</code> to be able to convert JSX in normal JavaScript code.</p>
+         <p>With this setup understood, let's now move over to installing Rollup.</p>
+      </div>
+            <h2 id="Installing_Rollup_and_its_plugins">Installing Rollup and its plugins</h2>      <div class="uc">
+         <p>Installing Rollup is superbly simple.</p>
+         <p>Navigate to the <span class="imp">project1</span> directory that you created above and run the following command:</p>
+         <div class="csl csl--dark"><div class="csl_line"><span class="light">.../project1&gt;</span> npm install rollup --save-dev</div></div>
+         <p>This installs the <code>rollup</code> package as a developer dependency (because of the <code>--save-dev</code> flag).</p>
+         <p>We install <code>rollup</code> as <code>--save-dev</code> since it isn't used while running the application — rather it's only used when <em>building</em> the app and, likewise, it's only required by a developer working with the application's code.</p>
+         <p>Anyways, moving on, with <code>rollup</code> installed, now we have to install four Rollup plugins that'll help us bundle our React applications.</p>
+         <p>These plugins are described as follows:</p>
+         <h3><code>@rollup/plugin-node-resolve</code></h3>
+         <p>When we have an absolute import in a module file such as <code>import 'react'</code>, we technically want the underlying bundler to know how to extract the desired package from the <span class="imp">node_modules</span> directory. This is known as <a href="https://nodejs.org/api/modules.html#all-together">Node's module resolution algorithm</a>.</p>
+         <p>Rollup, by default, doesn't know of or use this algorithm to resolve absolute imports.</p>
+         <p>In order to get it to do so, we need the <b><code>node-resolve</code></b> plugin which tells Rollup how to find packages/modules in the <span class="imp">node_modules</span> directory.</p>
+         <h3><code>@rollup/plugin-commonjs</code></h3>
+         <p>By design, Rollup is meant to work with ECMAScript modules, i.e. the ones with <code>import</code> and <code>export</code> keywords. It's not designed to be paired with CommonJS modules, like the <code>react</code> package.</p>
+         <p>To be able to process CommonJS modules using Rollup, we ought to tell it that it needs to parse a CommonJS module. And this is done via the <b><code>commonjs</code></b> plugin.</p>
+         <h3><code>@rollup/plugin-babel</code></h3>
+         <p>As we stated at the start of this article, React uses JSX which ought to be processed before it could be run. The de facto JSX preprocessor in use across the globe is Babel.</p>
+         <p>To use Babel along with Rollup, we need the <b><code>babel</code></b> plugin which automatically loads Babel and runs it based upon a <span class="imp">.babelrc.json</span> file at the project's root or based upon configurations sent into the plugin right at the time of its invocation.</p>
+         <h3><code>@rollup/plugin-replace</code></h3>
+         <p>There is a special processing that needs to be done in order to be able to work with React packages. That is, the <code>react</code> package has a statement in it that refers to a property <code>env</code> on a global variable called <code>process</code>.</p>
+         <p>If you're experienced with Node.js, you'll realize that this statement won't work in the browser as it accesses the <code>process</code> variable which is only available in Node.js. In order to get our React program to run without any errors in the browser, we need to replace this statement with a dummy value. That's what the <b><code>replace</code></b> plugin is used for.</p>
+         <p>With the purpose of each of these plugins clear, let's go on and install all four of them.</p>
+         <p>Here's the command to run:</p>
+         <div class="csl csl--dark"><div class="csl_line"><span class="light">.../project1&gt;</span> npm install @rollup/plugin-node-resolve @rollup/plugin-commonjs @rollup/plugin-babel @rollup/plugin-replace --save-dev</div></div>
+         <p>As with the <code>rollup</code> package, don't forget to include the <code>--save-dev</code> flag while installing these plugins, as they're all tied to Rollup which itself is a dev dependency.</p>
+         <p>With all the plugins installed, we are now left with configuring Rollup. And that means to create a <b><span class="imp">rollup.config.mjs</span></b> file at the project's root.</p>
+      </div>
+            <h2 id="Configuring_Rollup">Configuring Rollup</h2>      <div class="uc">
+         <p>Go ahead and create a <span class="imp">rollup.config.mjs</span> file at the root of the project's directory.</p>
+         <p>Rollup uses this configuration file before it performs the bundling process. The structure of the file is really simple. The default export of the file, which is merely a pure object, specifies all of the settings that we want to have in our bundling routine.</p>
+         <p>Here is a description of some of the most common properties of this exported object:</p>
+         <ul class="args">
+            <li><b><code>input</code></b> specifies the path of the input file.</li>
+            <li><b><code>output</code></b> specifies an object containing two properties: <b><code>file</code></b> that tells about the destination file path and <b><code>format</code></b> that provides the format of the output file. Possible values for <code>format</code> are <code>'iife'</code>, <code>'umd'</code>, <code>'cjs'</code>.</li>
+            <li>The <b><code>plugins</code></b> property is a list of all plugins to use in our Rollup setup.</li>
+         </ul>
+         <p>Let's now get our <span class="imp">rollup.config.mjs</span> set up:</p>
+         <div class="code"><pre><code class="language-javascript">import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
+
+export default {
+   input: 'src/index.js',
+   output: {
+      file: 'public/bundle.js',
+      format: 'iife'
+   },
+   plugins: [
+      nodeResolve({
+         extensions: ['.js', '.jsx']
+      }),
+      babel({
+         babelHelpers: 'bundled',
+         presets: ['@babel/preset-react'],
+         extensions: ['.js', '.jsx']
+      }),
+      commonjs(),
+      replace({
+         preventAssignment: false,
+         'process.env.NODE_ENV': '"development"'
+      })
+   ]
+}</code></pre></div>
+         <p>Here's what's happening here:</p>
+         <p>Firstly, since the input file is <span class="imp">index.js</span> in the <span class="imp">src</span> directory, the value of <code>input</code> becomes <code>'src/index.js'</code>. Secondly, since we want the bundled file to be called <span class="imp">bundle.js</span> in the <span class="imp">public</span> directory, the value of the <code>file</code> property of <code>output</code> becomes <code>'public/bundle.js'</code>. The format is chosen as <code>'iife'</code> because it's pretty basic of a setting.</p>
+         <p>Moving on, next we have a sequence of all the plugins to load in order to correctly bundle the React application.</p>
+         <p>With this configuration file set up, go on and add a <b><code>build</code></b> script in the <span class="imp">package.json</span> file to be able to quickly and conveniently run the <code>rollup</code> command for the bundling:</p>
+         <div class="code"><pre><code class="language-json">{
+   "name": "project1",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+<div class="h-line"></div>      "build": "rollup -c -w",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   ...
+}</code></pre></div>
+         <p>In the command <code>rollup -c -w</code>, the <code>-c</code> flag tells Rollup that there is a configuration file to use to understand the desired bundling process, while the <code>-w</code> flag instructs it to watch all the files involved in the bundling and then rerun the bundling process as soon as any one of them changes.</p>
+         <p>Now, let's run this <code>build</code> command and let the magic happen:</p>
+         <div class="csl csl--dark"><div class="csl_line"><span class="light">.../project1&gt;</span> npm run build</div></div>
+         <p>Once the bundling is complete, we could open up the <span class="imp">index.html</span> file in the browser to see the app running. But before we do that, let's install the <b><code>serve</code></b> package so that the <span class="imp">public</span> directory is served on a localhost server.</p>
+         <p>Technically, React could be used without spinning up a localhost server, but it's a recommendation, the absense of which raises a warning in the console, and so we'll do it. It's really simple, thanks to the <code>serve</code> package.</p>
+         <p>Run the following command to install <code>serve</code>:</p>
+         <div class="csl csl--dark"><div class="csl_line"><span class="light">.../project1&gt;</span> npm install serve</div></div>
+         <p>Next up, define the <b><code>start</code></b> script in <span class="imp">package.json</span> to the string <code>'serve ./public'</code>, in order to run the <code>serve</code> command serving up the <span class="imp">public</span> directory:</p>
+         <div class="code"><pre><code class="language-json">{
+   "name": "project1",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "build": "rollup -c -w",
+<div class="h-line"></div>      "start": "serve ./public",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   ...
+}</code></pre></div>
+         <p>Now when we execute the <code>npm start</code> command, the <code>serve</code> package would fire up, serving the <span class="imp">public</span> directory over localhost.</p>
+         <p>Let's get that done:</p>
+         <div class="csl csl--dark"><div class="csl_line"><span class="light">.../project1&gt;</span> npm start</div></div>
+         <p>And now we could view our application in the browser by navigating to <span class="imp">localhost:3000</span>.</p>
+         <div class="fig fig--closer">
+            <div style="max-width: 501px;border: 1px solid #999;"><div class="lazy" style="padding-bottom: 36.52694610778443%;"><img class="lazy_img" data-src="/static/images/blog/setup-rollup/output.png" alt="React application running on localhost:3000."></div></div>
+            <div class="fig_capt">React application running on localhost:3000.</div>
+         </div>
+         <p><em>Perfect.</em></p>
+      </div>
+            <h2 id="In_the_end">In the end</h2>      <div class="uc">
+         <p>So this was it for setting up Rollup to be able to work with React applications. Rollup is, without any doubt whatsoever, an awesome tool to use as an alternative to Webpack, which can get really complex at times.</p>
+         <p>What's best about using Rollup is that it gets frequent updates and has an active developer community behind it and so we could expect some nice oven-freshness in this lightweight bundler tool.</p>
+         <p>If you want to ramp up your Rollup's setup, you could create a task in VSCode to call the <code>npm build</code> command via a quick keyboard shortcut. VSCode is really configurable and that's something we as developers must leverage.</p>
+         <p>Have a great time coding in React. 🙂</p>
+      </div>
+   </div>
+   <div class="sharing-icons">
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react"><i class="cg-icon cg-icon--white cg-icon--facebook"></i></a></span>
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via Twitter" target="_blank" rel="noopener" href="http://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react&text=How+to+Set+Up+Rollup+to+Run+React%3F+%7C+CodeGuage&via=codeguage"><i class="cg-icon cg-icon--white cg-icon--twitter"></i></a></span>
+   <span class="cta-wrapper cta-wrapper--light"><a class="cta" title="Share via email" target="_blank" rel="noopener" href="mailto:?subject=How%20to%20Set%20Up%20Rollup%20to%20Run%20React%3F%20%7C%20CodeGuage&body=https%3A%2F%2Fwww.codeguage.com%2Fblog%2Fsetup-rollup-for-react"><i class="cg-icon cg-icon--white cg-icon--mail"></i></a></span>
+</div></div>
+<div class="s-right"><div class="sticky-wrapper c-right_section">
+         <div class="sticky" data-relative=".s-left" data-width="1000"><div class="sidebar">
+      <h5>Popular picks</h5>
+      <ul class="anchors"><li><a href="good-or-perfect-in-js">Are You Just Good or Perfect in JavaScript? Part 1</a></li><li><a href="what-is-lazy-loading">Don't be lazy in lazy loading</a></li><li><a href="canonical-and-duplicate-urls">Canonical and duplicate URLs</a></li></ul>
+   </div><div class="sidebar social-sidebar">
+               <h5>Get Involved!</h5>
+               <p>Fill in our 2-minute survey and shape the future of our website.</p>
+               <span class="cta-wrapper cta-wrapper--white"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeIgmKbwGF-4czdvf062EgyjDxORFMwPPfB8v88WQmi25o-8g/viewform" target="_blank" class="cta" rel="noopener nofollow">Survey <i class="cg-icon cg-icon--dark cg-icon--sm cg-icon--arrow-top-right"></i></a></span>
+            </div>
+         </div>
+      </div></div>
+<div class="oflw"></div></div>
+<div class="promo-cont">
+<div class="promo">
+   <h4>More to explore</h4>
+   <p>Learning shouldn't stop at just one course!</p>
+   <div class="card-list"><div class="card-cont">
+      <a class="card" href="/courses/js/"><div class="card_top">
+            <div class="card_image"><img src="/static/images/inventory/courses/javascript.svg"></div>
+            <div class="card_info">
+               <div class="card_tags"></div>
+               <h2 class="card_info_title">JavaScript</h2>
+               <p>A simple programming language to make web pages interactive</p>
+            </div>
+         </div>
+         <div class="card_bottom">
+            <div class="card_diff">
+               <i class="card_diff_icon"></i>
+               <b>&nbsp; Beginner</b>
+            </div>
+            <div class="card_chaps"><b>80</b> Chapters</div>
+         </div>
+         <div class="oflw"></div>
+      </a>
+   </div><div class="card-cont">
+      <a class="card" href="/tutorials/sliders/"><div class="card_top">
+            <div class="card_image"><img src="/static/images/inventory/courses/sliders.svg"></div>
+            <div class="card_info">
+               <div class="card_tags"></div>
+               <h2 class="card_info_title">Sliders</h2>
+               <p>Content divided into multiple slides with touch-based navigation</p>
+            </div>
+         </div>
+         <div class="card_bottom">
+            <div class="card_diff">
+               <i class="card_diff_icon"></i>
+               <b>&nbsp; Beginner</b>
+            </div>
+            <div class="card_chaps"><b>11</b> Chapters</div>
+         </div>
+         <div class="oflw"></div>
+      </a>
+   </div></div>
+   <div class="oflw"></div>   <div class="promo_ctas">
+      <div class="cta-wrapper cta-wrapper--primary"><a href="/courses/" class="cta">Explore Courses &nbsp;<i class="cg-icon cg-icon--sm cg-icon--dark cg-icon--arrow-right-white"></i></a></div>
+      <div class="cta-wrapper"><a href="/tutorials/" class="cta">Explore Tutorials &nbsp;<i class="cg-icon cg-icon--dark cg-icon--sm cg-icon--arrow-right"></i></a></div>
+   </div>
+</div>
+</div>
+
+<div>
+</div>
+
+<script src="/static/scripts/main.min.js?v=27" async></script>
+
+<script>
+   function setConsent(nec, ads, analytics, prefs) {
+      document.getElementById('consent-cont').style.display = 'none';
+      document.cookie = 'cg-consent=' + encodeURIComponent(JSON.stringify({
+         nec: nec,
+         ads: ads,
+         analytics: analytics,
+         prefs: prefs
+      })) + `; max-age=31557600; path=/; secure`;
+
+      var consent = {
+         'functionality_storage': nec ? 'granted' : 'denied',
+         'security_storage': nec ? 'granted' : 'denied',
+         'ad_storage': ads ? 'granted' : 'denied',
+         'analytics_storage': analytics ? 'granted' : 'denied',
+         'personalization_storage': prefs ? 'granted' : 'denied',
+      };
+      gtag('consent', 'update', consent);
+   }
+   function managePrefs(showPreferences) {
+      document.getElementById('consent-1').hidden = showPreferences;
+      document.getElementById('consent-2').hidden = !showPreferences;
+   }
+   function acceptGiven() {
+      var switchElements = document.getElementById('consent-2').getElementsByClassName('switch');
+      setConsent(
+         switchElements[0].classList.contains('switch--on'),
+         switchElements[1].classList.contains('switch--on'),
+         switchElements[2].classList.contains('switch--on'),
+         switchElements[3].classList.contains('switch--on'),
+      );
+   }
+</script>
+<div id="consent-cont">
+<div class="consent-overlay"></div>
+<div class="consent" id="consent-1">
+   <p>We use cookies for essential site functionality and to enhance your overall browsing experience. By using this site, you agree to our usage of cookies. Read more about them in our <a class="link" href="/privacy">Privacy Policy</a>.</p>
+   <div class="ctas">
+      <span class="cta-wrapper cta-wrapper--light"><button onclick="managePrefs(true)" class="cta">Manage preferences</button></span>
+      <span class="cta-wrapper cta-wrapper--primary" onclick="setConsent(true, true, true, true)"><button class="cta">Accept all</button></span>
+   </div>
+</div>
+<div class="consent" id="consent-2" hidden>
+   <button class="btn" onclick="managePrefs(false)">&leftarrow; <span>Back</span></button>
+   <div class="consent_body">
+      <p class="text-lg"><span style="vertical-align: middle;">Necessary</span> <span class="switch switch--on switch--disabled"></span></p>
+      <p>Essential for basic website functionality, ensuring smooth navigation and performance without collecting any personal information.</p>
+      <hr>
+      <p class="text-lg"><span style="vertical-align: middle;">Marketing</span> <span class="switch" onclick="this.classList.toggle('switch--on')"></span></p>
+      <p>Used to personalize your online experience, delivering tailored content and advertisements based on your interests and browsing behavior.</p>
+      <hr>
+      <p class="text-lg"><span style="vertical-align: middle;">Analytics</span> <span class="switch" onclick="this.classList.toggle('switch--on')"></span></p>
+      <p>Gather anonymous data, providing valuable insights into website usage and helping us enhance user experience by analyzing trends and optimizing content.</p>
+      <hr>
+      <p class="text-lg"><span style="vertical-align: middle;">Preferences</span> <span class="switch" onclick="this.classList.toggle('switch--on')"></span></p>
+      <p>Enable the customization of your website experience by remembering your preferences, such as language settings and font size choices.</p>
+   </div>
+   <div class="ctas">
+      <span class="cta-wrapper" onclick="setConsent(false, false, false, false)"><button class="cta">Reject all</button></span>
+      <span class="cta-wrapper cta-wrapper--light"><button onclick="acceptGiven()" class="cta">Accept</button></span>
+      <span class="cta-wrapper cta-wrapper--primary" onclick="setConsent(true, true, true, true)"><button class="cta">Accept all</button></span>
+   </div>
+</div>
+</div>
+
+<footer>
+<div class="footer-grid">
+   <div class="footer_branding">
+      <a class="footer_logo" href="/"></a>
+      <p>A platform for learning computer science, programming and mathematics, all for free.</p>
+      <h6><a href="/about"><span>Learn about us</span> <i class="cg-icon cg-icon--dark cg-icon--sm cg-icon--arrow-right"></i></a></h6>
+   </div>
+   <div class="footer_links">
+      <div class="footer_sect">
+         <h6><a href="/courses/">Courses</a></h6>
+         <ol><li><a href="/courses/react/">React</a></li><li><a href="/courses/php/">PHP</a></li><li><a href="/courses/js/">JavaScript</a></li><li><a href="/courses/advanced-js/">Advanced JavaScript</a></li><li><a href="/courses/regexp/">JavaScript Regex</a></li><li><a href="/courses/python/">Python</a></li></ol>
+      </div>
+      <div class="footer_sect">
+         <h6><a href="/tutorials/">Tutorials</a></h6>
+         <ol><li><a href="/tutorials/autocomplete/">Autocomplete</a></li><li><a href="/tutorials/lazy-loading/">Lazy Loading</a></li><li><a href="/tutorials/sliders/">Sliders</a></li></ol>
+         <h6><a href="/blog/">Blog</a></h6>
+         <h6><a href="/questions/">Questions</a></h6>
+      </div>
+      <div class="footer_sect footer_sect--3">
+         <div class="footer_connect">
+            <h6>Connect with us</h6>
+            <div class="footer_icons">
+               <a class="footer_icon" href="https://www.instagram.com/codeguage/"><i class="cg-icon cg-icon--white cg-icon--instagram"></i></a>
+               <a class="footer_icon" href="https://twitter.com/codeguage"><i class="cg-icon cg-icon--white cg-icon--twitter"></i></a>
+               <a class="footer_icon" href="https://dev.to/codeguage/"><i class="cg-icon cg-icon--white cg-icon--dev"></i></a>
+               <a class="footer_icon" href="https://github.com/codeguage-code"><i class="cg-icon cg-icon--white cg-icon--github"></i></a>
+            </div>
+         </div>
+         <div class="footer_contact">
+            <h6>Contact us</h6>
+            <p>For any queries or suggestions, write to us at <a href="mailto:mail@codeguage.com"><code>mail@codeguage.com</code></a>.</p>
+         </div>
+         <div class="oflw"></div>
+         <!-- <p>Learn how we use each of these platforms to connect with the world of enthusiasts.</p>
+         <div><div class="cta">Learn more</div></div> -->
+      </div>
+      <div class="oflw"></div>
+   </div>
+   <div class="footer_info">
+      <div class="footer_info_links"><a href="/terms">Terms of Use</a> <a href="/privacy">Privacy Policy</a></div>
+      <div class="footer_info_copyright">CodeGuage &copy; 2023. All rights reserved.</div>
+   </div>
+   <div class="oflw"></div>
+</div>
+</footer></body>
+</html>
