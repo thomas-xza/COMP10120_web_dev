@@ -20,6 +20,8 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
     const [markers_loaded, set_markers_loaded] = useState(false);
 
+    const [reading_state, set_reading_state] = useState(false);
+
     
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -33,13 +35,17 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
     const map_clicked = (e) => {
 
-	set_form_data({ ...form_data,
-			state: 1,
-			coordinate_x: lng,
-			coordinate_y: lat });
+	if (form_data.state === 0) {
 
-	console.log(form_data);
+	    set_form_data({ ...form_data,
+			    state: 1,
+			    coordinate_x: lng,
+			    coordinate_y: lat });
+	    
+	    console.log(form_data);
 
+	}
+	    
     };
 
     const load_markers = () => {
@@ -60,11 +66,8 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
 	const marker_1 = new mapboxgl.Marker()
     	      .setLngLat([-2.235, 53.46235])
-	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
-    	      .addTo(map.current);
-
-	// marker_1.getElement().addEventListener('click', () => {
-        //   alert("Clicked");
+    	      .addTo(map.current)
+	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"));
 
 	// const popup_1 = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
 	//       .setLngLat([-2.235, 53.46235])
@@ -73,8 +76,14 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
 	const marker_2 = new mapboxgl.Marker()
     	      .setLngLat([-2.245, 53.46235])
-	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
-    	      .addTo(map.current);
+	      .addTo(map.current)
+	
+	marker_2.getElement().addEventListener('click', () => {
+            alert("Alternate click event (not part of Mapbox code) but don't know if useful")
+	    set_form_data({ ...form_data,
+			    state: 3 })
+	    console.log(form_data)
+	});
 
 	const marker_3 = new mapboxgl.Marker()
     	      .setLngLat([-2.235, 53.46335])
@@ -122,42 +131,6 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 	});
 
   });
-
-    const [geojson, set_geojson] = useState(
-	{
-	    type: 'FeatureCollection',
-	    features: [
-		{
-		    type: 'Feature',
-		    geometry: {
-			type: 'Point',
-			coordinates: [-2.235, 53.46235]
-		    },
-		    properties: {
-			title: 'Mapbox',
-			description: 'Washington, D.C.'
-		    }
-		},
-		{
-		    type: 'Feature',
-		    geometry: {
-			type: 'Point',
-			coordinates: [-2.235, 53.46235]
-		    },
-		    properties: {
-			title: 'Mapbox',
-			description: 'San Francisco, California'
-		    }
-		}
-	    ]
-	}
-    )
-
-    // const marker = new mapboxgl.Marker({
-    // 	color: '#FFFFFF',
-    // 	draggable: false
-    // }).setLngLat([-2.235, 53.46235]).addTo(map.current)
-    
    
     return (
 	
