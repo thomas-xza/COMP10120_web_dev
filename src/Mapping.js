@@ -38,7 +38,8 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 	console.log(form_data);
 
     };
-   
+
+
     //  https://docs.mapbox.com/api/maps/styles/
     
     useEffect(() => {
@@ -65,7 +66,14 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 	});
 
   });
+
+
+    // const marker = new mapboxgl.Marker({
+    // 	color: '#FFFFFF',
+    // 	draggable: false
+    // }).setLngLat([-2.235, 53.46235]).addTo(map.current)
     
+   
     return (
 	
 	    <div>
