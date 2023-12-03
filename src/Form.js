@@ -61,7 +61,9 @@ export default function Form( {form_data, set_form_data} ) {
 	
 	localStorage.setItem("data_points", JSON.stringify(local_storage_data_arr_new))
 
-	console.log( { ...localStorage } )
+	alert("Your form entry has been saved (to your own browser - no backend yet!)")
+
+	console.log( { ...localStorage } )	
 
 	handle_close()
 

@@ -17,6 +17,9 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 						  coordinate_y: 0,
 						  issue_type: "",
 						  description: "" });
+
+    const [markers_loaded, set_markers_loaded] = useState(false);
+
     
     const mapContainer = useRef(null);
     const map = useRef(null);
@@ -39,6 +42,53 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
     };
 
+    const load_markers = () => {
+
+	const markerHeight = 50;
+	const markerRadius = 10;
+	const linearOffset = 25;
+	const popupOffsets = {
+	    'top': [0, 0],
+	    'top-left': [0, 0],
+	    'top-right': [0, 0],
+	    'bottom': [0, -markerHeight],
+	    'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+	    'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+	    'left': [markerRadius, (markerHeight - markerRadius) * -1],
+	    'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+	};
+
+	const marker_1 = new mapboxgl.Marker()
+    	      .setLngLat([-2.235, 53.46235])
+	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+    	      .addTo(map.current);
+
+	// marker_1.getElement().addEventListener('click', () => {
+        //   alert("Clicked");
+
+	// const popup_1 = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
+	//       .setLngLat([-2.235, 53.46235])
+	//       .setHTML("<h1>Hello World!</h1>")
+	//       .setMaxWidth("300px");
+
+	const marker_2 = new mapboxgl.Marker()
+    	      .setLngLat([-2.245, 53.46235])
+	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+    	      .addTo(map.current);
+
+	const marker_3 = new mapboxgl.Marker()
+    	      .setLngLat([-2.235, 53.46335])
+	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+    	      .addTo(map.current);
+
+	const marker_4 = new mapboxgl.Marker()
+    	      .setLngLat([-2.235, 53.46435])
+	      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+    	      .addTo(map.current);
+
+	set_markers_loaded(true)
+
+    }
 
     //  https://docs.mapbox.com/api/maps/styles/
     
@@ -52,6 +102,12 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 	    center: [lng, lat],
 	    zoom: zoom
 	});
+
+	if (markers_loaded === false) {
+
+	    load_markers()
+
+	}
 	
 	map.current.on('mousemove', (e) => {
 
@@ -67,6 +123,35 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
   });
 
+    const [geojson, set_geojson] = useState(
+	{
+	    type: 'FeatureCollection',
+	    features: [
+		{
+		    type: 'Feature',
+		    geometry: {
+			type: 'Point',
+			coordinates: [-2.235, 53.46235]
+		    },
+		    properties: {
+			title: 'Mapbox',
+			description: 'Washington, D.C.'
+		    }
+		},
+		{
+		    type: 'Feature',
+		    geometry: {
+			type: 'Point',
+			coordinates: [-2.235, 53.46235]
+		    },
+		    properties: {
+			title: 'Mapbox',
+			description: 'San Francisco, California'
+		    }
+		}
+	    ]
+	}
+    )
 
     // const marker = new mapboxgl.Marker({
     // 	color: '#FFFFFF',
