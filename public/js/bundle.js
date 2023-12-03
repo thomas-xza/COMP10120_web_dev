@@ -7926,21 +7926,109 @@
 	var reactDomExports = reactDom.exports;
 	var ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(reactDomExports);
 
+	function Form({
+	  form_data,
+	  set_form_data
+	}) {
+	  const handle_close = e => {
+	    set_form_data({
+	      ...form_data,
+	      state: 0,
+	      coordinate_x: 0,
+	      coordinate_y: 0
+	    });
+	    console.log(form_data);
+	  };
+	  const handle_type = e => {
+	    set_form_data({
+	      ...form_data,
+	      issue_type: e.target.value
+	    });
+	    console.log(form_data);
+	  };
+	  const handle_desc = e => {
+	    set_form_data({
+	      ...form_data,
+	      description: e.target.value
+	    });
+	    console.log(form_data);
+	  };
+	  return /*#__PURE__*/React.createElement("div", {
+	    className: "form form_new"
+	  }, /*#__PURE__*/React.createElement("button", {
+	    onClick: handle_close
+	  }, "Close form"), /*#__PURE__*/React.createElement("label", null, "Issue type"), /*#__PURE__*/React.createElement("input", {
+	    value: form_data.description,
+	    onChange: handle_type
+	  }), /*#__PURE__*/React.createElement("label", null, "Description of issue"), /*#__PURE__*/React.createElement("input", {
+	    value: form_data.description,
+	    onChange: handle_desc
+	  }));
+	}
+
+	function Data_io({
+	  form_data,
+	  set_form_data
+	}) {
+	  switch (form_data["state"]) {
+	    case 1:
+	      return /*#__PURE__*/React.createElement("div", {
+	        className: "form form_new"
+	      }, /*#__PURE__*/React.createElement(Form, {
+	        form_data: form_data,
+	        set_form_data: set_form_data
+	      }));
+	    case 2:
+	      return /*#__PURE__*/React.createElement("div", null);
+	  }
+	}
+
+	////  This file is intended to replace Mapping.js
+
+
 	mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
 	function App() {
+	  const [form_data, set_form_data] = reactExports.useState({
+	    "state": 0,
+	    "window_x": 0,
+	    "window_y": 0,
+	    "coordinate_x": 0,
+	    "coordinate_y": 0,
+	    "issue_type": "",
+	    "description": ""
+	  });
 	  const mapContainer = reactExports.useRef(null);
 	  const map = reactExports.useRef(null);
 	  const [lng, setLng] = reactExports.useState(-2.235);
 	  const [lat, setLat] = reactExports.useState(53.46235);
 	  const [zoom, setZoom] = reactExports.useState(13);
 	  reactExports.useState([0, 0]);
-	  function map_clicked(e) {
+	  reactExports.useState(0);
+
+	  //  https://docs.mapbox.com/api/maps/styles/
+
+	  // function useWindowSize() {
+	  // 	useLayoutEffect(() => {
+	  // 	    function updateSize() {
+	  // 		setSize([window.innerWidth, window.innerHeight]);
+	  // 	    }
+	  // 	    window.addEventListener('resize', updateSize);
+	  // 	    updateSize();
+	  // 	    return () => window.removeEventListener('resize', updateSize);
+	  // 	}, []);
+	  // 	return size;
+	  // };
+
+	  const map_clicked = e => {
 	    alert("You clicked:\n" + lng + "\n" + lat);
-	  }
-	  function handleResize() {
-	    map.current.resize();
-	    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight);
-	  }
+	    set_form_data({
+	      ...form_data,
+	      state: 1,
+	      coordinate_x: lng,
+	      coordinate_y: lat
+	    });
+	    console.log(form_data);
+	  };
 	  reactExports.useEffect(() => {
 	    if (map.current) return; // initialize map only once
 	    map.current = new mapboxgl.Map({
@@ -7951,14 +8039,16 @@
 	      zoom: zoom
 	    });
 	    map.current.on('mousemove', e => {
-	      console.log(JSON.stringify(e.point));
+	      // console.log(JSON.stringify(e.point));
 	      const co_ords = e.lngLat.wrap();
-	      console.log(co_ords, co_ords["lng"], co_ords["lat"]);
+
+	      // console.log(co_ords, co_ords["lng"], co_ords["lat"]);
 	      setLng(co_ords.lng);
 	      setLat(co_ords.lat);
 	      setZoom(map.current.getZoom().toFixed(2));
 	    });
-	    window.addEventListener('resize', handleResize);
+
+	    // window.addEventListener('resize', handleResize)
 	  });
 	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
 	    className: "sidebar"
@@ -7966,6 +8056,9 @@
 	    ref: mapContainer,
 	    className: "map-container",
 	    onClick: map_clicked
+	  }), /*#__PURE__*/React.createElement(Data_io, {
+	    form_data: form_data,
+	    set_form_data: set_form_data
 	  }));
 	}
 

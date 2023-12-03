@@ -3,6 +3,16 @@ body {
     background-color: #333;  
 }
 
+.form {
+
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.75);
+ 
+}
+
 .sidebar {
     background-color: rgb(35 55 75 / 90%);
     color: #fff;
