@@ -35,7 +35,7 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 
     const map_clicked = (e) => {
 
-	if (form_data.state === 0) {
+	// if (form_data.state === 0) {
 
 	    set_form_data({ ...form_data,
 			    state: 1,
@@ -44,7 +44,7 @@ export default function Mapping( { client_side_data, fallback_data } ) {
 	    
 	    console.log(form_data);
 
-	}
+	// }
 	    
     };
 

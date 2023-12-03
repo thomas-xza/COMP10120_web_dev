@@ -7924,7 +7924,21 @@
 	}
 
 	var reactDomExports = reactDom.exports;
-	var ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(reactDomExports);
+
+	var createRoot;
+
+	var m = reactDomExports;
+	{
+	  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+	  createRoot = function (c, o) {
+	    i.usingClientEntryPoint = true;
+	    try {
+	      return m.createRoot(c, o);
+	    } finally {
+	      i.usingClientEntryPoint = false;
+	    }
+	  };
+	}
 
 	function Form({
 	  form_data,
@@ -7970,6 +7984,7 @@
 	    const local_storage_data_arr_new = [...local_storage_data_arr, form_data];
 	    console.log(local_storage_data_arr_new);
 	    localStorage.setItem("data_points", JSON.stringify(local_storage_data_arr_new));
+	    alert("Your form entry has been saved (to your own browser - no backend yet!)");
 	    console.log({
 	      ...localStorage
 	    });
@@ -7994,6 +8009,11 @@
 	  form_data,
 	  set_form_data
 	}) {
+	  // const marker = new mapboxgl.Marker({
+	  // 	color: '#FFF',
+	  // 	draggable: false
+	  // }).setLngLat([-2.235, 53.46235]).addTo(map.current)
+
 	  switch (form_data["state"]) {
 	    case 1:
 	      return /*#__PURE__*/React.createElement("div", {
@@ -8009,6 +8029,7 @@
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
 	function Mapping({
+	  client_side_data,
 	  fallback_data
 	}) {
 	  const [form_data, set_form_data] = reactExports.useState({
@@ -8021,6 +8042,8 @@
 	    issue_type: "",
 	    description: ""
 	  });
+	  const [markers_loaded, set_markers_loaded] = reactExports.useState(false);
+	  reactExports.useState(false);
 	  const mapContainer = reactExports.useRef(null);
 	  const map = reactExports.useRef(null);
 	  const [lng, setLng] = reactExports.useState(-2.235);
@@ -8029,6 +8052,8 @@
 	  reactExports.useState([0, 0]);
 	  reactExports.useState(0);
 	  const map_clicked = e => {
+	    // if (form_data.state === 0) {
+
 	    set_form_data({
 	      ...form_data,
 	      state: 1,
@@ -8036,6 +8061,29 @@
 	      coordinate_y: lat
 	    });
 	    console.log(form_data);
+
+	    // }
+	  };
+	  const load_markers = () => {
+	    new mapboxgl.Marker().setLngLat([-2.235, 53.46235]).addTo(map.current).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"));
+
+	    // const popup_1 = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
+	    //       .setLngLat([-2.235, 53.46235])
+	    //       .setHTML("<h1>Hello World!</h1>")
+	    //       .setMaxWidth("300px");
+
+	    const marker_2 = new mapboxgl.Marker().setLngLat([-2.245, 53.46235]).addTo(map.current);
+	    marker_2.getElement().addEventListener('click', () => {
+	      alert("Alternate click event (not part of Mapbox code) but don't know if useful");
+	      set_form_data({
+	        ...form_data,
+	        state: 3
+	      });
+	      console.log(form_data);
+	    });
+	    new mapboxgl.Marker().setLngLat([-2.235, 53.46335]).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")).addTo(map.current);
+	    new mapboxgl.Marker().setLngLat([-2.235, 53.46435]).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")).addTo(map.current);
+	    set_markers_loaded(true);
 	  };
 
 	  //  https://docs.mapbox.com/api/maps/styles/
@@ -8049,6 +8097,9 @@
 	      center: [lng, lat],
 	      zoom: zoom
 	    });
+	    if (markers_loaded === false) {
+	      load_markers();
+	    }
 	    map.current.on('mousemove', e => {
 	      // console.log(JSON.stringify(e.point));
 	      const co_ords = e.lngLat.wrap();
@@ -8083,12 +8134,15 @@
 	  switch (page_flow) {
 	    case 0:
 	      return /*#__PURE__*/React.createElement(Mapping, {
-	        fallback_data: fallback_data,
-	        client_side_data: client_side_data
+	        client_side_data: client_side_data,
+	        fallback_data: fallback_data
 	      });
 	  }
 	}
 
-	ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(App, null)), document.getElementById('root'));
+	// import 'mapbox-gl/dist/mapbox-gl.css';
+
+	const root = createRoot(document.getElementById('root'));
+	root.render( /*#__PURE__*/React.createElement(App, null));
 
 })(mapboxgl);
