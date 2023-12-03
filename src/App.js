@@ -1,20 +1,39 @@
+
+////  This file is intended to replace Mapping.js
+
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ'
 
+import Data_io from './Data_io.js';
+
 
 export default function App() {
+
+    const [form_data, set_form_data] = useState({ "state": 0,
+						  "window_x": 0,
+						  "window_y": 0,
+						  "coordinate_x": 0,
+						  "coordinate_y": 0,
+						  "issue_type": "",
+						  "description": "" });   
+    
     const mapContainer = useRef(null);
     const map = useRef(null);
+    
     const [lng, setLng] = useState(-2.235);
     const [lat, setLat] = useState(53.46235);
     const [zoom, setZoom] = useState(13);
     const [size, setSize] = useState([0, 0]);
 
+    const [form_state, set_form_state] = useState(0);
+
     //  https://docs.mapbox.com/api/maps/styles/
 
 
+    //  Following function may be redundant - try deleting calls to it first
+    
     function useWindowSize() {
 	useLayoutEffect(() => {
 	    function updateSize() {
@@ -25,14 +44,23 @@ export default function App() {
 	    return () => window.removeEventListener('resize', updateSize);
 	}, []);
 	return size;
-    }
+    };
 
     
-    function map_clicked(e) {
+    const map_clicked = (e) => {
 
 	alert("You clicked:\n" + lng + "\n" + lat);
 
-    }
+	set_form_data({ ...form_data,
+			state: 1,
+			coordinate_x: lng,
+			coordinate_y: lat });
+
+	console.log(form_data);
+
+    };
+
+    //  Following function may be redundant - try deleting calls to it first
     
     function handleResize() {
 
@@ -43,6 +71,7 @@ export default function App() {
     }
     
     useEffect(() => {
+	
 	if (map.current) return; // initialize map only once
 	map.current = new mapboxgl.Map({
 	    container: mapContainer.current,
@@ -54,10 +83,10 @@ export default function App() {
 	
 	map.current.on('mousemove', (e) => {
 
-	    console.log(JSON.stringify(e.point));
+	    // console.log(JSON.stringify(e.point));
 	    const co_ords = e.lngLat.wrap();
 
-	    console.log(co_ords, co_ords["lng"], co_ords["lat"]);
+	    // console.log(co_ords, co_ords["lng"], co_ords["lat"]);
 	    setLng(co_ords.lng);
 	    setLat(co_ords.lat);
 	    
@@ -70,11 +99,16 @@ export default function App() {
   });
     
     return (
+	
 	    <div>
 	    <div className="sidebar">
 	    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
 	</div>
 	    <div ref={mapContainer} className="map-container" onClick={map_clicked}/>
+
+	    <Data_io form_data={form_data} set_form_data={set_form_data}/>
+	
 	    </div>
+
     );
 }

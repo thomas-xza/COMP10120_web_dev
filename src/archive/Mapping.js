@@ -1,15 +1,21 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 
+
+//  Note the following line doesn't work, for unknown reasons,
+//    so instead this has been hardcoded as <script src="..."> in the HTML head
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
+
+import Data_io from './Data_io.js';
 
 export default function Mapping({ fallback_data_obj, form_data, set_form_data }) {
 
     const handle_clear = () => {
 
-	set_form_data(({ "coordinate_x": "",
+	set_form_data(({ "state" = 0,
+			 "coordinate_x": "",
                          "coordinate_y": "",
                          "issue_type": "",
                          "description": "" }));
@@ -46,6 +52,13 @@ export default function Mapping({ fallback_data_obj, form_data, set_form_data })
 	    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
 	</div>
 	    <div ref={mapContainer} className="map-container" />
+	    
+            <Data_io
+	form_data={form_data}
+	set_form_data={set_form_data}
+	    />
+	    
+	
 	</>
 	    
     );
