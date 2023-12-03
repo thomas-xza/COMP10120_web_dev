@@ -1,114 +1,40 @@
+import React from 'react';
+import { useState } from 'react';
 
-////  This file is intended to replace Mapping.js
+// import { fallback_data } from './fallback_data.json';
 
-import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
-mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ'
-
-import Data_io from './Data_io.js';
-
+import Mapping from './Mapping.js';
 
 export default function App() {
 
-    const [form_data, set_form_data] = useState({ "state": 0,
-						  "window_x": 0,
-						  "window_y": 0,
-						  "coordinate_x": 0,
-						  "coordinate_y": 0,
-						  "issue_type": "",
-						  "description": "" });   
-    
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    
-    const [lng, setLng] = useState(-2.235);
-    const [lat, setLat] = useState(53.46235);
-    const [zoom, setZoom] = useState(13);
-    const [size, setSize] = useState([0, 0]);
+    // const [fallback_data, set_databack_data] = useState(fallback_data);
 
-    const [form_state, set_form_state] = useState(0);
+    const [fallback_data, set_fallback_data] = useState({});
 
-    //  https://docs.mapbox.com/api/maps/styles/
+    const [client_side_data, set_client_side_data] = useState(true);
 
+    const [page_flow, set_page_flow] = useState(0);
 
-    //  Following function may be redundant - try deleting calls to it first
-    
-    function useWindowSize() {
-	useLayoutEffect(() => {
-	    function updateSize() {
-		setSize([window.innerWidth, window.innerHeight]);
-	    }
-	    window.addEventListener('resize', updateSize);
-	    updateSize();
-	    return () => window.removeEventListener('resize', updateSize);
-	}, []);
-	return size;
-    };
+    const local_storage_data_points = localStorage.getItem("data_points")
 
-    
-    const map_clicked = (e) => {
+    if (local_storage_data_points === null) {
 
-	alert("You clicked:\n" + lng + "\n" + lat);
-
-	set_form_data({ ...form_data,
-			state: 1,
-			coordinate_x: lng,
-			coordinate_y: lat });
-
-	console.log(form_data);
-
-    };
-
-    //  Following function may be redundant - try deleting calls to it first
-    
-    function handleResize() {
-
-	map.current.resize();
-
-	console.log('resized to: ', window.innerWidth, 'x', window.innerHeight);
+	localStorage.setItem("data_points", []);
 
     }
+
+    switch (page_flow) {
+
+    case 0:
+
+	return(
+	    <Mapping
+	    fallback_data={fallback_data}
+	    client_side_data={client_side_data}
+		/>	    
+	)
+
+    };
     
-    useEffect(() => {
-	
-	if (map.current) return; // initialize map only once
-	map.current = new mapboxgl.Map({
-	    container: mapContainer.current,
-	    // style: 'mapbox://styles/mapbox/streets-v12'
-	    style: 'mapbox://styles/mapbox/navigation-night-v1',
-	    center: [lng, lat],
-	    zoom: zoom
-	});
-	
-	map.current.on('mousemove', (e) => {
-
-	    // console.log(JSON.stringify(e.point));
-	    const co_ords = e.lngLat.wrap();
-
-	    // console.log(co_ords, co_ords["lng"], co_ords["lat"]);
-	    setLng(co_ords.lng);
-	    setLat(co_ords.lat);
-	    
-	    setZoom(map.current.getZoom().toFixed(2))
-	    
-	});
-
-	window.addEventListener('resize', handleResize)
-
-  });
-    
-    return (
-	
-	    <div>
-	    <div className="sidebar">
-	    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-	</div>
-	    <div ref={mapContainer} className="map-container" onClick={map_clicked}/>
-
-	    <Data_io form_data={form_data} set_form_data={set_form_data}/>
-	
-	    </div>
-
-    );
 }
+
