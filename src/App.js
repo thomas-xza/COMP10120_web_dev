@@ -31,8 +31,8 @@ export default function App() {
 
 	return(
 	    <Mapping
-	    fallback_data={fallback_data}
 	    client_side_data={client_side_data}
+	    fallback_data={fallback_data}
 		/>	    
 	)
 

@@ -7,7 +7,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6O
 import Data_io from './Data_io.js';
 
 
-export default function Mapping( { fallback_data } ) {
+export default function Mapping( { client_side_data, fallback_data } ) {
 
     const [form_data, set_form_data] = useState({ state: 0,
 						  id: Math.floor(Math.random() * 10000000) + 1,
