@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function Form( {form_data, set_form_data} ) {
 
-    const handle_close = (e) => {
+    const handle_close = () => {
 
 	set_form_data({ ...form_data,
 			state: 0,
@@ -36,23 +36,34 @@ export default function Form( {form_data, set_form_data} ) {
 
     };
 
+    const add_obj_to_local_storage = (obj) => {
+
+	
+
+    }
+
     const handle_confirm = (e) => {
 
 	set_form_data({ ...form_data,
 		        state: 2 })
 
-	const data_points = localStorage.getItem("data_points")
+	// const data_points = localStorage.getItem("data_points")
 
-	localStorage.setItem("data_points", [ ...data_points,
-					      form_data
-					    ])
+	// console.log("data_points", data_points)
+
+
+	const local_storage_data_arr = JSON.parse(localStorage.getItem("data_points") || '[]')
+
+	const local_storage_data_arr_new = [ ...local_storage_data_arr,
+					     form_data ]
+
+	console.log(local_storage_data_arr_new)
+	
+	localStorage.setItem("data_points", JSON.stringify(local_storage_data_arr_new))
 
 	console.log( { ...localStorage } )
 
-	//  Form data should fire off somewhere now, then switch state back to 0
-	//    Temporary hack is just to store in localStorage...?
-
-	console.log(form_data)
+	handle_close()
 
     };
 

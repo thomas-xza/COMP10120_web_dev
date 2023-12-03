@@ -15,11 +15,13 @@ export default function App() {
 
     const [page_flow, set_page_flow] = useState(0);
 
+    localStorage.clear();
+
     const local_storage_data_points = localStorage.getItem("data_points")
 
     if (local_storage_data_points === null) {
 
-	localStorage.setItem("data_points", []);
+	localStorage.setItem("data_points", "");
 
     }
 
