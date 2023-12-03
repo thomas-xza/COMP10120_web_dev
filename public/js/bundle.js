@@ -7930,10 +7930,13 @@
 	  form_data,
 	  set_form_data
 	}) {
-	  const handle_close = e => {
+	  const handle_close = () => {
 	    set_form_data({
 	      ...form_data,
 	      state: 0,
+	      id: Math.floor(Math.random() * 10000000) + 1,
+	      window_x: 0,
+	      window_y: 0,
 	      coordinate_x: 0,
 	      coordinate_y: 0
 	    });
@@ -7953,17 +7956,38 @@
 	    });
 	    console.log(form_data);
 	  };
+	  const handle_confirm = e => {
+	    set_form_data({
+	      ...form_data,
+	      state: 2
+	    });
+
+	    // const data_points = localStorage.getItem("data_points")
+
+	    // console.log("data_points", data_points)
+
+	    const local_storage_data_arr = JSON.parse(localStorage.getItem("data_points") || '[]');
+	    const local_storage_data_arr_new = [...local_storage_data_arr, form_data];
+	    console.log(local_storage_data_arr_new);
+	    localStorage.setItem("data_points", JSON.stringify(local_storage_data_arr_new));
+	    console.log({
+	      ...localStorage
+	    });
+	    handle_close();
+	  };
 	  return /*#__PURE__*/React.createElement("div", {
 	    className: "form form_new"
 	  }, /*#__PURE__*/React.createElement("button", {
 	    onClick: handle_close
-	  }, "Close form"), /*#__PURE__*/React.createElement("label", null, "Issue type"), /*#__PURE__*/React.createElement("input", {
-	    value: form_data.description,
+	  }, "Close form"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Issue type"), /*#__PURE__*/React.createElement("input", {
+	    value: form_data.issue_type,
 	    onChange: handle_type
 	  }), /*#__PURE__*/React.createElement("label", null, "Description of issue"), /*#__PURE__*/React.createElement("input", {
 	    value: form_data.description,
 	    onChange: handle_desc
-	  }));
+	  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", {
+	    onClick: handle_confirm
+	  }, "Submit issue"));
 	}
 
 	function Data_io({
@@ -7983,19 +8007,19 @@
 	  }
 	}
 
-	////  This file is intended to replace Mapping.js
-
-
 	mapboxgl.accessToken = 'pk.eyJ1Ijoid2l6YXJkLXQiLCJhIjoiY2xwaDk1cGg5MDU5MzJtczV6OG43dHp1diJ9.zRlYb9J86pLnzQKKoCcPqQ';
-	function App() {
+	function Mapping({
+	  fallback_data
+	}) {
 	  const [form_data, set_form_data] = reactExports.useState({
-	    "state": 0,
-	    "window_x": 0,
-	    "window_y": 0,
-	    "coordinate_x": 0,
-	    "coordinate_y": 0,
-	    "issue_type": "",
-	    "description": ""
+	    state: 0,
+	    id: Math.floor(Math.random() * 10000000) + 1,
+	    window_x: 0,
+	    window_y: 0,
+	    coordinate_x: 0,
+	    coordinate_y: 0,
+	    issue_type: "",
+	    description: ""
 	  });
 	  const mapContainer = reactExports.useRef(null);
 	  const map = reactExports.useRef(null);
@@ -8004,23 +8028,7 @@
 	  const [zoom, setZoom] = reactExports.useState(13);
 	  reactExports.useState([0, 0]);
 	  reactExports.useState(0);
-
-	  //  https://docs.mapbox.com/api/maps/styles/
-
-	  // function useWindowSize() {
-	  // 	useLayoutEffect(() => {
-	  // 	    function updateSize() {
-	  // 		setSize([window.innerWidth, window.innerHeight]);
-	  // 	    }
-	  // 	    window.addEventListener('resize', updateSize);
-	  // 	    updateSize();
-	  // 	    return () => window.removeEventListener('resize', updateSize);
-	  // 	}, []);
-	  // 	return size;
-	  // };
-
 	  const map_clicked = e => {
-	    alert("You clicked:\n" + lng + "\n" + lat);
 	    set_form_data({
 	      ...form_data,
 	      state: 1,
@@ -8029,6 +8037,9 @@
 	    });
 	    console.log(form_data);
 	  };
+
+	  //  https://docs.mapbox.com/api/maps/styles/
+
 	  reactExports.useEffect(() => {
 	    if (map.current) return; // initialize map only once
 	    map.current = new mapboxgl.Map({
@@ -8041,14 +8052,10 @@
 	    map.current.on('mousemove', e => {
 	      // console.log(JSON.stringify(e.point));
 	      const co_ords = e.lngLat.wrap();
-
-	      // console.log(co_ords, co_ords["lng"], co_ords["lat"]);
 	      setLng(co_ords.lng);
 	      setLat(co_ords.lat);
 	      setZoom(map.current.getZoom().toFixed(2));
 	    });
-
-	    // window.addEventListener('resize', handleResize)
 	  });
 	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
 	    className: "sidebar"
@@ -8060,6 +8067,26 @@
 	    form_data: form_data,
 	    set_form_data: set_form_data
 	  }));
+	}
+
+	function App() {
+	  // const [fallback_data, set_databack_data] = useState(fallback_data);
+
+	  const [fallback_data, set_fallback_data] = reactExports.useState({});
+	  const [client_side_data, set_client_side_data] = reactExports.useState(true);
+	  const [page_flow, set_page_flow] = reactExports.useState(0);
+	  localStorage.clear();
+	  const local_storage_data_points = localStorage.getItem("data_points");
+	  if (local_storage_data_points === null) {
+	    localStorage.setItem("data_points", "");
+	  }
+	  switch (page_flow) {
+	    case 0:
+	      return /*#__PURE__*/React.createElement(Mapping, {
+	        fallback_data: fallback_data,
+	        client_side_data: client_side_data
+	      });
+	  }
 	}
 
 	ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(App, null)), document.getElementById('root'));
