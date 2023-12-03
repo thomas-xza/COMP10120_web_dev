@@ -28,25 +28,7 @@ export default function Mapping( { fallback_data } ) {
 
     const [form_state, set_form_state] = useState(0);
 
-    //  https://docs.mapbox.com/api/maps/styles/
-
-
-    // function useWindowSize() {
-    // 	useLayoutEffect(() => {
-    // 	    function updateSize() {
-    // 		setSize([window.innerWidth, window.innerHeight]);
-    // 	    }
-    // 	    window.addEventListener('resize', updateSize);
-    // 	    updateSize();
-    // 	    return () => window.removeEventListener('resize', updateSize);
-    // 	}, []);
-    // 	return size;
-    // };
-
-    
     const map_clicked = (e) => {
-
-	alert("You clicked:\n" + lng + "\n" + lat);
 
 	set_form_data({ ...form_data,
 			state: 1,
@@ -57,6 +39,8 @@ export default function Mapping( { fallback_data } ) {
 
     };
    
+    //  https://docs.mapbox.com/api/maps/styles/
+    
     useEffect(() => {
 	
 	if (map.current) return; // initialize map only once
@@ -73,7 +57,6 @@ export default function Mapping( { fallback_data } ) {
 	    // console.log(JSON.stringify(e.point));
 	    const co_ords = e.lngLat.wrap();
 
-	    // console.log(co_ords, co_ords["lng"], co_ords["lat"]);
 	    setLng(co_ords.lng);
 	    setLat(co_ords.lat);
 	    
