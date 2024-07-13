@@ -12,16 +12,16 @@ Built with the following libraries:
 
 Based on tutorials from:
 
-- [https://www.codeguage.com/blog/setup-rollup-for-react](https://www.codeguage.com/blog/setup-rollup-for-react)
-- [https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/](https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/)
-- [https://docs.mapbox.com/mapbox-gl-js/example/mouse-position/](https://docs.mapbox.com/mapbox-gl-js/example/mouse-position/)
+- https://www.codeguage.com/blog/setup-rollup-for-react
+- https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/
+- https://docs.mapbox.com/mapbox-gl-js/example/mouse-position/
 
 A copy of the Codeguage tutorial is also available in `docs/`
 
 And also more full-featured learning resources from:
 
-- [https://react.dev/learn](Official React documentation)
-- [https://www.crockford.com/image/howjsworks.pdf](How Javascript Works by Douglas Crockford)
+- [Official React documentation](https://react.dev/learn)
+- [How Javascript Works by Douglas Crockford](https://www.crockford.com/image/howjsworks.pdf)
 
 
 Quickstart
